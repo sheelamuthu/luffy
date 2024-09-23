@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Pharmacy</title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        header {
+            background: linear-gradient(90deg, #007bff, #00d2ff);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #ffcc00;
+        }
+        
+        .hero {
+            background: url('ai.jpg') no-repeat center center/cover;
+            color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 4em;
+            margin: 0;
+            z-index: 2;
+            position: relative;
+            animation: fadeInDown 1s ease-in-out;
+        }
+        
+        .hero p {
+            font-size: 1.5em;
+            margin-top: 20px;
+            z-index: 2;
+            position: relative;
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+        
+        .hero a {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 30px;
+            background: #ffcc00;
+            color: #333;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            border-radius: 50px;
+            z-index: 2;
+            position: relative;
+            transition: background 0.3s, transform 0.4s;
+            animation: fadeInUp 2s ease-in-out;
+        }
+        
+        .hero a:hover {
+            background: #fff;
+            transform: scale(1.1);
+        }
+        
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .content {
+            padding: 60px 20px;
+            text-align: center;
+            background: #ffffff;
+            color: #333;
+        }
+        
+        .content h2 {
+            font-size: 3em;
+            margin-bottom: 30px;
+            color: #007bff;
+            position: relative;
+        }
+        
+        .content h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: #ffcc00;
+            margin: 20px auto;
+        }
+        
+        .content p {
+            font-size: 1.2em;
+            margin-bottom: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .services {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .service {
+            background: white;
+            padding: 20px;
+            margin: 20px;
+            width: 300px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service img {
+            width: 100%;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .service h3 {
+            font-size: 1.8em;
+            margin: 15px 0;
+            color: #007bff;
+        }
+        
+        .service p {
+            font-size: 1em;
+        }
+        
+        .service:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .service:hover img {
+            transform: scale(1.1);
+        }
+        
+        .parallax {
+            background: url('ai.jpg') no-repeat center center/cover;
+            height: 500px;
+            position: relative;
+            z-index: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .parallax h2 {
+            font-size: 4em;
+            position: relative;
+            z-index: 2;
+            animation: fadeIn 2s ease-in-out;
+        }
+        
+        .parallax::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+        
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+            position: relative;
+        }
+        
+        footer .social-icons {
+            margin-bottom: 20px;
+        }
+        
+        footer .social-icons a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 1.5em;
+            transition: color 0.3s, transform 0.3s;
+        }
+        
+        footer .social-icons a:hover {
+            color: #ffcc00;
+            transform: scale(1.2);
+        }
+        
+        footer p {
+            margin: 0;
+            font-size: 1em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>AI Pharmacy</h1>
+    </header>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="file:///C:/Users/admin/OneDrive/Desktop/html/aboutus.html">About Us</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="hero" id="home">
+        <h1>Welcome to AI Pharmacy</h1>
+        <p>Your health, reimagined with AI</p>
+        <a href="#services">Explore Our Services</a>
+    </div>
+
+    <div class="content" id="services">
+        <h2>What We Offer</h2>
+        <p>AI Pharmacy is at the forefront of pharmaceutical care, providing personalized medication management using advanced AI technology. We offer a range of services designed to make healthcare more accessible, efficient, and personalized for everyone.</p>
+
+        <div class="services">
+            <div class="service">
+                <img src="img2.jpg" alt="Personalized Medication">
+
+                <a href="file:///C:/Users/admin/OneDrive/Desktop/html/sign.html">Personalized Medication</a>
+
+                <h3>Personalized Medication</h3>
+                <p>Get tailored medication plans based on your unique health profile, ensuring you receive the best possible care.</p>
+            </div>
+            <div class="service">
+                <img src="img4.jpg" alt="AI Consultation">
+                <h3>24/7 AI Consultation</h3>
+                <p>Access our AI-powered consultation service anytime, anywhere, and get instant advice and support.</p>
+            </div>
+            <div class="service">
+                <img src="img5.jpg" alt="Secure Delivery">
+                <h3>Secure & Fast

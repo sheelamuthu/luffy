@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tailored Medication Plans</title>
+    <style>
+        /* Basic Reset */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            color: #fff;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 50px 20px;
+        }
+        
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            background: #fff;
+            color: #0072ff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 30px;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #0072ff;
+            color: #fff;
+        }
+        
+        .content {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 50px 0;
+        }
+        
+        .content img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .text {
+            max-width: 600px;
+            margin: 20px;
+            text-align: justify;
+        }
+        
+        .text h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background: #0072ff;
+            border-radius: 10px;
+            margin-top: 50px;
+        }
+        
+        footer p {
+            font-size: 1rem;
+        }
+        /* Chatbot styles */
+        
+        .chatbot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            max-height: 400px;
+            background: #fff;
+            color: #333;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .chatbot-header {
+            background: #0072ff;
+            padding: 10px;
+            color: #fff;
+            text-align: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        
+        .chatbot-messages {
+            flex-grow: 1;
+            padding: 10px;
+            overflow-y: auto;
+        }
+        
+        .chatbot-messages p {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .chatbot-input {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #ccc;
+        }
+        
+        .chatbot-input input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        
+        .chatbot-input button {
+            background: #0072ff;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        .chatbot-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #0072ff;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Tailored Medication Plans</h1>
+        <p>Get personalized care based on your unique health profile</p>
+        <button class="btn">Get Started</button>
+    </header>
+
+    <div class="content">
+        <img src="https://via.placeholder.com/400" alt="Personalized Care">
+        <div class="text">
+            <h2>Why Choose Us?</h2>
+            <p>
+                Our service ensures that you receive the best possible care by creating medication plans that are tailored specifically to your health needs. We analyze your health profile to provide the most effective treatment, minimizing risks and optimizing your
+                well-being.
+            </p>
+        </div>
+    </div>
+
+    <!-- Chatbot Interface -->
+    <div class="chatbot" id="chatbot">
+        <div class="chatbot-header" id="chatbotHeader">Chat with us!</div>
+        <div class="chatbot-messages" id="chatbotMessages"></div>
+        <div class="chatbot-input">
+            <input type="text" id="chatbotInput" placeholder="Type your message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <!-- Chatbot Toggle Button -->
+    <button class="chatbot-toggle" id="chatbotToggle">💬</button>
+
+    <footer>
+        <p>&copy; 2024 Tailored Medication Plans. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Toggle chatbot visibility
+        const chatbotToggle = document.getElementById('chatbotToggle');
+        const chatbot = document.getElementById('chatbot');
+        chatbotToggle.addEventListener('click', () => {
+            chatbot.style.display = chatbot.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Simple chatbot functionality
+        function sendMessage() {
+            const inputField = document.getElementById('chatbotInput');
+            const message = inputField.value;
+            const messagesContainer = document.getElementById('chatbotMessages');
+
+            if (message.trim()) {
+                const userMessage = document.createElement('p');
+                userMessage.textContent = `You: ${message}`;
+                messagesContainer.appendChild(userMessage);
+
+                const botReply = document.createElement('p');
+                botReply.textContent = 'Bot: Thank you for your message. How can I assist you with your medication plan today?';
+                messagesContainer.appendChild(botReply);
+
+                inputField.value = '';
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }
+        }
+    </script>
+</body>
+
+</html>
